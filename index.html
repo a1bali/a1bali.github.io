@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+  <style>
+:root {
+	--color-gray-light-1: #f8f8f8;
+	--color-gray-light-2: #e9e9e9;
+	--color-gray-light-3: #dedede;
+	--color-gray-dark-1: #545454;
+	--color-gray-dark-2: #737373;
+	--color-gray-dark-3: #9a9a9a;
+	--color-blue-dark-1: #00387f;
+	--color-tiffany: #00a6a6;
+	--profile-theme: #4682bf;
+	--timeline-circle-theme: #14253e;
+  --work-circle-theme: #14253e;
+	
+	--pgbar-length: 100%;
+
+	--MATH-PI: 3.1415px;
+	--percent: 100;
+}
+
+html {
+	font-size: 100%;
+    font-family: 'PT Sans', sans-serif;
+
+
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 3rem 1rem;
+	min-height: 100vh;
+	background-color: var(--color-gray-light-3);
+}
+
+.wrapper {
+	margin: 0 auto;
+	max-width: 70rem;
+	background-color: var(--color-gray-light-2);
+	display: flex;
+	box-shadow: 0px 0px 15px 4px #b3b3b3;
+}
+
+.intro {
+	flex: 0 0 250px;
+	background-color: var(--color-gray-light-1);
+	box-shadow: 5px 0px 15px 0px #b3b3b3;
+	z-index: 5;
+}
+.profile {
+	position: relative;
+	background-color: var(--profile-theme);
+	padding: 2rem 1rem;
+	margin-bottom: 50px;
+	text-align: center;
+	user-select: none;
+}
+.profile::after {
+	content: " ";
+	position: absolute;
+	left: 0;
+	bottom: -15px;
+	width: 100%;
+	height: 30px;
+	background-color: var(--profile-theme);
+	transform: skewY(-5deg);
+}
+.photo img {
+	width: 80%;
+	border-radius: 50%;
+}
+.bio .name {
+	font-size: 1.5rem;
+	text-align: center;
+	color: var(--color-gray-light-1);
+	margin: 0;
+	margin-top: 1rem;
+}
+.bio .profession {
+	font-size: 1rem;
+	text-align: center;
+	color: var(--color-gray-light-1);
+	margin: 0;
+}
+
+.intro-section {
+	padding: 0 1rem;
+	color: var(--color-gray-dark-1);
+}
+.intro-section .title {
+	font-size: 1rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+.about .paragraph {
+	text-align: justify;
+}
+.info-section {
+	margin: 1rem 0;
+}
+.info-section span {
+	position: relative;
+	transition: all 0.3s;
+}
+.info-section i {
+	color: var(--profile-theme);
+	width: 20px;
+	height: 20px;
+}
+
+.edu-section{
+	padding: 0 1rem;
+}
+
+.edu-title {
+	display: flex;
+	align-items: center;
+	font-size: 1.5rem;
+}
+
+.edu-section h1 {
+	font-size: 1rem;
+	margin: 5px 0;
+	
+}
+.edu-section p {
+	font-size: 0.8rem;
+	margin: 5px 0;
+}
+.edu-section time {
+	font-size: 0.8rem;
+	color: var(--color-gray-dark-2);
+}
+ hr{
+	position: relative;
+	height:3px;
+	width: 95%;
+	background-color: var(--profile-theme);
+
+ }
+
+.link a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.link span::after {
+	position: absolute;
+	content: '';
+	left: 50%;
+	bottom: -3px;
+	width: 0;
+	height: 2px;
+	background-color: var(--profile-theme);
+	transition: width 0.3s;
+	/*transition-timing-function: cubic-bezier(.64,.51,.16,.86);*/
+	transition-timing-function: cubic-bezier(.92,.57,.33,1.02);
+	transform: translate(-50%, 0);
+}
+
+.link span:hover {
+	color: var(--profile-theme);
+}
+.link span:hover::after {
+	width: 100%;
+}
+
+/* Detail section overall setting*/
+.detail {
+	flex: 1 0 0;
+	background-color: white;
+	padding: 2rem;
+}
+.detail:hover > .detail-section:not(:hover) {
+	opacity: 0.3;
+}
+.detail-section {
+	transition: all 0.3s;
+}
+.detail-section:not(:last-of-type) {
+	padding-bottom: 1rem;
+}
+.detail-title {
+	display: flex;
+	align-items: center;
+}
+.detail-section > .detail-content {
+	padding: 1.5rem;
+	padding-left: 2rem;
+	user-select: none;
+}
+.detail-section.edu > .detail-content {
+	padding-left: calc(1.5rem + 10px);
+}
+.detail-section.wrk > .detail-content {
+	padding-left: calc(1.5rem + 10px);
+}
+.title-icon + span {
+	font-size: 1.5rem;
+	transition: all 0.3s;
+}
+.title-icon {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	margin-right: 1rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	background-color: var(--profile-theme);
+	border-radius: 50%;
+	transition: all 0.3s;
+}
+.title-icon i {
+	color: white;
+	line-height: 1rem;
+	font-size: 1rem;
+	text-align: center;
+}
+.detail-section:hover .title-icon {
+	transform: scale(1.5);
+	margin-right: 1.5rem;
+}
+.detail-section:hover .title-icon + span {
+	letter-spacing: 1.5px;
+}
+
+/* time line block in education section */
+.timeline-block {
+	position: relative;
+	padding-left: 30px;
+}
+.timeline-block:not(:last-of-type) {
+	margin-bottom: 1rem;	
+}
+.timeline-block h1 {
+	font-size: 1rem;
+	margin: 5px 0;
+	transition: all 0.3s;
+}
+.timeline-block p {
+	font-size: 0.8rem;
+	margin: 5px 0;
+}
+.timeline-block time {
+	font-size: 0.8rem;
+	color: var(--color-gray-dark-2);
+}
+.timeline-block::before {
+	position: absolute;
+	content: '';
+	width: 15px;
+	height: 15px;
+	background-color: white;
+	border: 3px solid var(--timeline-circle-theme);
+	border-radius: 50%;
+	left: -10px;
+	top: -5px;
+}
+.timeline-block::after {
+	position: absolute;
+	content: '';
+	width: 3px;
+	height: 100%;
+	background-color: var(--timeline-circle-theme);
+	left: -1px;
+	top: 13px;
+}
+.timeline-block:hover h1 {
+	color: var(--color-tiffany);
+}
+.timeline-block:hover::before {
+	animation: circle 1.2s infinite;
+}
+
+/* work exp block in education section */
+.work-block {
+	position: relative;
+	padding-left: 30px;
+}
+.work-block:not(:last-of-type) {
+	margin-bottom: 1rem;	
+}
+.work-block h1 {
+	font-size: 1rem;
+	margin: 5px 0;
+	transition: all 0.3s;
+}
+.work-block p {
+	font-size: 0.8rem;
+	margin: 5px 0;
+}
+.work-block time {
+	font-size: 0.8rem;
+	color: var(--color-gray-dark-2);
+}
+.work-block::before {
+	position: absolute;
+	content: '';
+	width: 15px;
+	height: 15px;
+	background-color: white;
+	border: 3px solid var(--work-circle-theme);
+	border-radius: 50%;
+	left: -10px;
+	top: -5px;
+}
+.work-block::after {
+	position: absolute;
+	content: '';
+	width: 3px;
+	height: 100%;
+	background-color: var(--work-circle-theme);
+	left: -1px;
+	top: 13px;
+}
+.work-block:hover h1 {
+	color: var(--color-tiffany);
+}
+.work-block:hover::before {
+	animation: circle 1.2s infinite;
+}
+
+/* Programming skills section */
+.pg-list, .tool-list, .favor-list {
+	padding: 0;
+	list-style: none;
+}
+.pg-list > li {	
+	margin: 1rem 0;
+	display: flex;
+	align-items: center;
+}
+.sb-skeleton {
+	position: relative;
+	flex: 1 0 auto;
+	height: 2px;
+	background-color: var(--color-gray-dark-3);
+}
+.pg-list > li > span {
+	flex: 0 0 100px;
+}
+.sb-skeleton > .skillbar {
+	position: absolute;
+	left: 0;
+	top: -1px;
+	width: var(--pgbar-length);
+	height: 4px;
+	background-color: var(--profile-theme);
+}
+.tool-list {
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+}
+.tool-list > li {
+	position: relative;
+	text-align: center;
+	flex: 0 0 25%;
+}
+.tool-list > li > svg {
+	position: relative;
+	fill: transparent;
+	width: 95%;
+	transform: rotate(-90deg);
+}
+.tool-list > li > svg > circle {
+	stroke-width: 1px;
+	stroke: #cdcdcd;
+}
+.tool-list > li > svg > circle.cbar {
+	stroke-width: 3px;
+	stroke: var(--profile-theme);
+	stroke-linecap: round;
+	stroke-dashoffset: 0;
+	stroke-dasharray: calc(var(--MATH-PI) * 45 * 2);
+	transition: all 0.8s;
+	transition-timing-function: cubic-bezier(.64,.51,.16,.86);
+}
+.tool-list > li:hover > svg > circle.cbar {
+	stroke-width: 4px;
+	stroke: var(--color-tiffany);
+	stroke-dashoffset: calc(var(--MATH-PI) * 45 * 2 * (1 - var(--percent)));
+}
+.tool-list > li > .tl-name,
+.tool-list > li > .tl-exp {
+	position: absolute;
+	left: 50%;
+	color: var(--color-gray-dark-1);
+}
+.tool-list > li > .tl-name {
+	top: 50%;
+	font-size: 1.2rem;
+	transform: translate(-50%, -50%);
+}
+.tool-list > li > .tl-exp {	
+	top: calc(50% + 1.4rem);
+	font-size: 1rem;
+	transform: translate(-50%, -50%);
+}
+/* Interests Section */
+.outer-frame {
+	border: 1px solid var(--color-gray-dark-3);
+	border-radius: 5px;
+}
+.favor-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+}
+.favor-list > li {
+	display: flex;
+	flex: 1 0 0;
+	align-items: center;
+	justify-content: baseline;
+	flex-direction: column;
+	color: var(--profile-theme);
+	padding: 1rem 0;
+	transition: all 0.3s;
+}
+.favor-list > li > i {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 40px;
+	width: 50px;
+	height: 50px;
+}
+.favor-list > li:hover {
+	transform: scale(1.2);
+	color: var(--color-tiffany);
+}
+.favor-list > li > span {
+	letter-spacing: 1px;
+}
+
+@keyframes circle {
+  0% {
+    box-shadow: 0 0 0 0px rgba(51, 52, 57, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 6px rgba(51, 52, 57, 0);
+  }
+}
+
+@media (max-width: 1024px) {
+	html {
+		font-size: 90%;
+	}
+	.wrapper {
+		flex-direction: column;
+	}
+	.intro, .detail {
+		flex: 0 0 100%;
+		box-shadow: none;
+	}
+	.intro-section {
+		padding: 0 2rem;
+	}
+	.profile {
+		margin-bottom: 1rem;
+	}
+	.profile::after {
+		display: none;
+	}
+	.photo img {
+		width: 100px;
+		height: 100px;
+	}
+}
+
+@media (max-width: 768px) {
+	html {
+		font-size: 80%;
+	}
+	.tool-list {
+		flex-wrap: wrap;
+	}
+	.tool-list > li {
+		flex: 0 0 33.33%;
+	}
+	.favor-list > li {
+		flex: 0 0 33.3333%;
+	}
+}
+@media (max-width: 500px) {
+	html {
+		font-size: 70%;
+	}
+} 
+  </style>
+
+  <body>
+    <div class="wrapper">
+      <div class="intro">
+        <div class="profile">
+          <div class="photo">
+            <img src="">
+          </div>
+          <div class="bio">
+            <h1 class="name">Ankush Bali</h1>
+            <p class="profession">Mechanical Engineering Graduate</p>
+          </div>
+        </div>
+       
+        <div class="intro-section contact">
+          <h1 class="title">Contact</h1>
+          <div class="info-section">
+            <span>(437) 220-6995</span>
+          </div>
+          <div class="info-section">
+            <span>abali04@outlook.com</span>
+          </div>
+          <div class="info-section">
+            <span>Toronto,ON</span>
+          </div>
+        </div>
+        <hr>
+          <div class="edu-section">
+			<div class = "edu-title">
+				<span>Education</span>
+			</div>
+			<br>
+            <h1 style="font-size:1rem;">Mechnical Engineering, B.Eng</h1>
+			
+            <time>September 2018- May 2023</time>
+			
+            <p>Toronto Metropolitan University</p>
+            <p>Specializing in Mechatronics</p>
+            <p>GPA: 3.2 / 4.33</p>
+		
+	</div>
+            
+          <hr>
+		  <div class="edu-section">
+			<div class = "edu-title">
+				<span>Skills/Abilities</span>
+			</div>
+			<br>
+			<ul style="padding-left: 10px;">
+            <li><p>Pursuing a P.Eng License</p></li>
+				<li><p>Well versed in microcontrollers such as an Arduino UNO, Arduino Mega and ESP32 along with experience
+					in the control of different motors and sensors. </p></li>
+					<li><p>Skilled communicator shown to be true by presenting daily, weekly, and monthly reports to managers and
+						corporate</p></li>
+		</ul>
+	</div>
+      </div>
+      <div class="detail">
+        
+        <div class="detail-section wrk">
+          <div class="detail-title">
+            <div class="title-icon">
+            </div>
+            <span>Work Experience</span>
+          </div>
+          <div class="detail-content">
+            <div class="work-block">
+              <h1>Manufacturing Engineering Intern</h1>
+              <p>Sonoco Flexibles, Mississauga, ON</p>
+              <time>September 2018- May 2023</time>
+              <ul>
+                <li><p>Managed a specialized team that was responsible for analyzing KPIs and reducing overall losses for the plant by
+                  leaning out the business, which resulted in identifying crucial points of issue that affected operational efficiency</p></li>
+                  <li><p>Digitized many forms and recorded the information filled in those forms using proficient knowledge of Excel</p></li>
+                  <li><p>Led monthly safety meetings with the corporate team, applying strong oral communication skills to ensure
+                    departments are following safety regulations</p></li>
+                    <li><p>Corrected many written instructions that were essential for the production of different products, resulting in
+                      improved operational efficiency</p></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-section wrk">
+          <div class="detail-title">
+            <div class="title-icon">
+            </div>
+            <span>Projects/Leadership Experience</span>
+          </div>
+          <div class="detail-content">
+            <div class="work-block">
+              <h1>Hand Rehabilitation Device</h1>
+              <p>Capstone Project</p>
+              <time>Janurary 2023 - May 2023</time>
+              <ul>
+                <li><p>Created for individuals with hand injuries that limit their ability to open and close hands</p></li>
+                  <li><p>Used motors, microcontroller Arduino Mega, Wi-Fi module, and programming languages C, Python, HTML,
+                    JavaScript</p></li>
+                  <li><p>Attached to the fingertips and allowed users to pull against the motors to determine their hand strength and to
+                    then help them strengthen their hands</p></li>
+                    <li><p>Designed website where the motor torque could be adjusted remotely, and the force pulled by the user was
+                      displayed along with an option to download the data through a CSV file</p></li>
+                      <li><p>Demonstrated proficiency in programming languages along with microcontrollers and ability to create
+                        innovative solutions for physical therapy</p></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="detail-content">
+            <div class="work-block">
+              <h1>Mechanical Design Team Member</h1>
+              <p>Ryerson Rams Robotics</p>
+              <time>September 2019 - September 2022</time>
+              <ul>
+                <li><p>Designed and developed a robotic arm capable of performing task required by the Canadian International
+                  Rover Challenge (CIRC)</p></li>
+                  <li><p>Utilized SolidWorks to design and analyze mechanical components of the arm</p></li>
+                  <li><p>Collaborated with the electrical and software teams to ensure integration and functionality of the arm</p></li>
+                    <li><p>Participated in testing and troubleshooting of the arm to ensure its access in competition</p></li>
+                      
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+        <div class="detail-section pg-skill">
+			<div class="detail-title">
+			  <div class="title-icon">
+				<i class="fas fa-laptop-code"></i>
+			  </div>
+			  <span>Techincal skills</span>
+			</div>
+			<div class="detail-content">
+			  <ul class="pg-list">
+				<li>
+				  <span>SolidWorks (CSWA)</span>
+				  <div class="sb-skeleton">
+					<div class="skillbar" style="--pgbar-length: 95%"></div>
+				  </div>
+				</li>
+				<li>
+				  <span>AutoCAD</span>
+				  <div class="sb-skeleton">
+					<div class="skillbar" style="--pgbar-length: 75%"></div>
+				  </div>
+				</li>
+				<li>
+					<li>
+						<span>Micro Controllers</span>
+						<div class="sb-skeleton">
+						  <div class="skillbar" style="--pgbar-length: 75%"></div>
+						</div>
+					  </li>
+					<li>
+						<li>
+							<span>PLC</span>
+							<div class="sb-skeleton">
+							  <div class="skillbar" style="--pgbar-length: 75%"></div>
+							</div>
+						  </li>
+						<li>
+				  <span>Microsoft Excel</span>
+				  <div class="sb-skeleton">
+					<div class="skillbar" style="--pgbar-length: 95%"></div>
+				  </div>
+				</li>
+				<li>
+					<span>MySQL</span>
+					<div class="sb-skeleton">
+					  <div class="skillbar" style="--pgbar-length: 75%"></div>
+					</div>
+				  </li>
+				<li>
+				  <span>Python</span>
+				  <div class="sb-skeleton">
+					<div class="skillbar" style="--pgbar-length: 70%"></div>
+				  </div>
+				</li>
+				<li>
+				  <span>C</span>
+				  <div class="sb-skeleton">
+					<div class="skillbar" style="--pgbar-length: 60%"></div>
+				  </div>
+				</li>
+				<li>
+				  <span>HTML/CSS</span>
+				  <div class="sb-skeleton">
+					<div class="skillbar" style="--pgbar-length: 65%"></div>
+				  </div>
+				</li>
+				<li>
+				  <span>JavaScript</span>
+				  <div class="sb-skeleton">
+					<div class="skillbar" style="--pgbar-length: 50%"></div>
+				  </div>
+				</li>
+			  </ul>
+			</div>
+		  </div>
+        
+        
+      </div>
+    </div>
+  </body>
+</html>
